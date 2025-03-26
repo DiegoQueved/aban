@@ -137,7 +137,7 @@ h6 {
   position: relative; /* Para que el ::before se posicione relativo a este elemento */
   text-align: center;
   padding: 50px 20px;
-  background: url('/Impact/assets/img/truck.jpg') center/cover no-repeat;
+  background: url('/aban/assets/img/truck.jpg') center/cover no-repeat;
   color: white;
   overflow: hidden; /* Evita que ::before sobresalga */
 }
