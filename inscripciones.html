@@ -230,10 +230,11 @@
                 
                 <div class="col-md-12" id="detalle-experiencia" style="display: none; margin-top: 10px;">
                   <label for="detalles">Por favor, describe brevemente tu experiencia:</label>
-                  <textarea id="detalles" class="form-control" name="detalles" rows="4"></textarea>
+                  <textarea id="detalles" class="form-control" name="detalles" rows="4" maxlength="100"></textarea>
+                  <small id="contador" style="display: block; margin-top: 5px;">0 / 100 caracteres</small>
                 </div>
                 
-                
+                               
                 <div class="col-md-12 text-center">
                   <div class="loading">Cargando</div>
                   <div class="error-message">Ups! ha ocurrido algo inesperado, inténtalo otra vez.</div>
@@ -350,6 +351,16 @@
   }
 });
 
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const textarea = document.getElementById("detalles");
+    const contador = document.getElementById("contador");
+
+    textarea.addEventListener("input", function () {
+      contador.textContent = `${textarea.value.length} / 100 caracteres`;
+    });
+  });
 </script>
 
 </html>
