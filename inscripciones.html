@@ -160,7 +160,7 @@
                 </div>
                              
                 <div class="col-md-12">
-                  <input type="email" class="form-control" name="email" placeholder="Correo electrónico" required>
+                  <input type="email" class="form-control" name="email" placeholder="Correo electrónico" autocomplete="email" required>
                 </div>
 
                 <div class="col-md-12">
@@ -177,7 +177,9 @@
                 </div> -->
                 
                 <div class="col-md-12">
-                  <select class="form-control" name="region" required>
+                  <div class="input-group">
+                    <span class="input-group-text">Región:</span>
+                  <select id="region" class="form-control" name="region" autocomplete="region" required>
                     <option value="">Seleccione su región</option>
                     <option value="Arica y Parinacota">Arica y Parinacota</option>
                     <option value="Tarapacá">Tarapacá</option>
@@ -185,7 +187,7 @@
                     <option value="Atacama">Atacama</option>
                     <option value="Coquimbo">Coquimbo</option>
                     <option value="Valparaíso">Valparaíso</option>
-                    <option value="Metropolitana">Región Metropolitana</option>
+                    <option value="Metropolitana">Metropolitana</option>
                     <option value="O'Higgins">O'Higgins</option>
                     <option value="Maule">Maule</option>
                     <option value="Ñuble">Ñuble</option>
@@ -196,12 +198,23 @@
                     <option value="Aysén">Aysén</option>
                     <option value="Magallanes">Magallanes</option>
                   </select>
+                  </div>
                 </div>
                 
+
+                <!-- Inicio codigo comunas -->
+                               
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="comuna" placeholder="Comuna" required>
+                  <div class="input-group">
+                    <span class="input-group-text">Comuna:</span>
+                    <!-- <label for="comuna">Comuna:</label> -->
+                  <select id="comuna" class="form-control" name="comuna" disabled>
+                    <option value="">Seleccione una comuna</option>
+                  </select>
+                  </div>
                 </div>
-                
+        
+                <!-- fin codigo comunas -->
                 <div class="col-md-12">
                   <select class="form-control" name="disponibilidad" required>
                     <option value="">Disponibilidad</option>
@@ -362,5 +375,40 @@
     });
   });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const regiones = {
+      "Arica y Parinacota": ["Arica", "Camarones", "Putre", "General Lagos"],
+      "Tarapacá": ["Iquique", "Alto Hospicio", "Pozo Almonte", "Camiña", "Colchane", "Huara", "Pica"],
+      "Antofagasta": ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama", "Tocopilla", "María Elena"],
+      "Atacama": ["Copiapó", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco"],
+      "Coquimbo": ["La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paihuano", "Vicuña", "Illapel", "Canela", "Los Vilos", "Salamanca", "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado"],
+      "Valparaíso": ["Valparaíso", "Casablanca", "Concón", "Juan Fernández", "Puchuncaví", "Quilpué", "Quintero", "Villa Alemana", "Viña del Mar", "Isla de Pascua", "Los Andes", "Calle Larga", "Rinconada", "San Esteban", "La Ligua", "Cabildo", "Papudo", "Petorca", "Zapallar", "Quillota", "La Calera", "Hijuelas", "La Cruz", "Nogales", "San Antonio", "Algarrobo", "Cartagena", "El Quisco", "El Tabo", "Santo Domingo", "San Felipe", "Catemu", "Llaillay", "Panquehue", "Putaendo", "Santa María"],
+      "Metropolitana": ["Santiago", "Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine", "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"],
+      "O'Higgins": ["Rancagua", "Codegua", "Coinco", "Coltauco", "Doñihue", "Graneros", "Las Cabras", "Machalí", "Malloa", "Mostazal", "Olivar", "Peumo", "Pichidegua", "Quinta de Tilcoco", "Rengo", "Requínoa", "San Vicente", "Pichilemu", "La Estrella", "Litueche", "Marchihue", "Navidad", "Paredones", "San Fernando", "Chépica", "Chimbarongo", "Lolol", "Nancagua", "Palmilla", "Peralillo", "Placilla", "Pumanque", "Santa Cruz"],
+      "Maule": ["Talca", "Constitución", "Curepto", "Empedrado", "Maule", "Pelarco", "Pencahue", "Río Claro", "San Clemente", "San Rafael", "Curicó", "Hualañé", "Licantén", "Molina", "Rauco", "Romeral", "Sagrada Familia", "Teno", "Vichuquén", "Linares", "Colbún", "Longaví", "Parral", "Retiro", "San Javier", "Villa Alegre", "Yerbas Buenas", "Cauquenes", "Chanco", "Pelluhue"],
+      "Ñuble": ["Chillán", "Bulnes", "Cobquecura", "Coelemu", "Coihueco", "El Carmen", "Ninhue", "Ñiquén", "Pemuco", "Pinto", "Portezuelo", "Quillón", "Quirihue", "Ránquil", "San Carlos", "San Fabián", "San Ignacio", "San Nicolás", "Treguaco", "Yungay"],
+      "Biobío": ["Concepción", "Coronel", "Lota", "San Pedro de la Paz", "Talcahuano", "Tomé"],
+      "Araucanía": ["Temuco", "Angol", "Carahue", "Cunco", "Curacautín", "Curarrehue"],
+      "Los Ríos": ["Valdivia", "Futrono", "La Unión", "Lanco", "Los Lagos", "Máfil"],
+      "Los Lagos": ["Puerto Montt", "Ancud", "Calbuco", "Castro", "Chaitén"],
+      "Aysén": ["Coyhaique", "Aysén", "Cisnes", "Chile Chico"],
+      "Magallanes": ["Punta Arenas", "Puerto Natales", "Porvenir", "Cabo de Hornos"]
+    };
+
+    document.getElementById("region").addEventListener("change", function () {
+      let comunaSelect = document.getElementById("comuna");
+      comunaSelect.innerHTML = '<option value="">Seleccione una comuna</option>';
+      let comunas = regiones[this.value] || [];
+      comunas.forEach(comuna => {
+        let option = document.createElement("option");
+        option.value = comuna;
+        option.textContent = comuna;
+        comunaSelect.appendChild(option);
+      });
+      comunaSelect.disabled = comunas.length === 0;
+    });
+  });
+</script> 
 
 </html>
