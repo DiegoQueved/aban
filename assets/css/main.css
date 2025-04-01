@@ -100,6 +100,34 @@ h6 {
 
 /* Personalizadas */
 
+.card-driver .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Mantiene la estructura */
+  height: 100%;
+}
+
+.card-driver .card-content {
+  flex-grow: 1; /* Permite que el contenido ocupe el espacio disponible sin afectar el botón */
+}
+
+.card-driver .btn-empleos {
+  align-self: center; /* Centra solo el botón horizontalmente */
+  margin-top: auto; /* Lo empuja hacia abajo */
+}
+
+
+
+.requisitos {
+  padding: 30px 0 20px 0;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.col-lg-8 p {
+  margin: 5px 0; /* Reduce el margen vertical */
+  line-height: 1.2; /* Ajusta la altura de línea */
+}
+
 .hero h2-ab {
   font-size: 48px;
   font-weight: 700;
@@ -118,7 +146,7 @@ h6 {
 }
 
 .section-aban {
-  background: url('/aban/assets/img/vehicle-road.jpg') center/cover no-repeat;
+  background: url('/assets/img/vehicle-road.jpg') center/cover no-repeat;
   position: relative;
   padding: 100px 0; /* Ajusta el espacio dentro de la sección */
 }
@@ -137,7 +165,7 @@ h6 {
   position: relative; /* Para que el ::before se posicione relativo a este elemento */
   text-align: center;
   padding: 50px 20px;
-  background: url('/aban/assets/img/truck.jpg') center/cover no-repeat;
+  background: url('/assets/img/truck.jpg') center/cover no-repeat;
   color: white;
   overflow: hidden; /* Evita que ::before sobresalga */
 }
@@ -207,6 +235,21 @@ h6 {
   background-color: #a80000;  /* Rojo más oscuro en hover */
 }
 
+.btn-empleos-bl {
+  background-color: var(--contrast-color);  /* Blanco */
+  color: #a80000;  /* Texto blanco */
+  border: none;  /* Sin borde */
+  padding: 8px 24px;  /* Espaciado cómodo */
+  font-size: 16px;  /* Tamaño de fuente */
+  cursor: pointer;  /* Manito al pasar el mouse */
+  border-radius: 8px;  /* Bordes redondeados */
+  transition: background-color 0.1s ease-in-out;  /* Suaviza la transición */
+}
+
+.btn-empleos-bl:hover {
+  background-color: #172a28;
+  color: #fff;
+}
 
 .banner-empleos {
   font-weight: bold;
@@ -228,7 +271,7 @@ h6 {
 
 .banner {
   position: relative;
-  height: 300px;
+  height: 200px;
   background-size: cover;
   background-position: center;
   border-radius: 10px;
@@ -976,7 +1019,7 @@ h6 {
 }
 
 .page-title .heading {
-  padding: 160px 0 80px 0;
+  padding: 130px 0 60px 0;
   border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
@@ -987,7 +1030,7 @@ h6 {
 
 .page-title nav {
   background-color: color-mix(in srgb, var(--default-color), transparent 92%);
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .page-title nav ol {
